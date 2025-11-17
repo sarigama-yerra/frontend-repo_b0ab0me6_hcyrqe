@@ -1,28 +1,35 @@
-import { useState } from 'react'
+import { useState } from 'react';
+import Hero from './components/Hero';
+import CityPicker from './components/CityPicker';
+import TimesCard from './components/TimesCard';
 
 function App() {
-  const [count, setCount] = useState(0)
+  const [selected, setSelected] = useState('');
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-purple-50 to-blue-50 flex items-center justify-center">
-      <div className="bg-white p-8 rounded-lg shadow-lg">
-        <h1 className="text-3xl font-bold text-gray-800 mb-4">
-          Vibe Coding Platform
-        </h1>
-        <p className="text-gray-600 mb-6">
-          Your AI-powered development environment
-        </p>
-        <div className="text-center">
-          <button
-            onClick={() => setCount(count + 1)}
-            className="bg-blue-500 hover:bg-blue-600 text-white font-semibold py-2 px-4 rounded"
-          >
-            Count is {count}
-          </button>
+    <div className="min-h-screen bg-black text-white">
+      <Hero />
+
+      <main className="relative -mt-12 md:-mt-16">
+        <div className="max-w-4xl mx-auto px-6">
+          <div className="bg-white/5 backdrop-blur rounded-2xl p-6 md:p-8 border border-white/10">
+            <CityPicker onSelect={setSelected} />
+            <TimesCard city={selected} />
+          </div>
+
+          <div className="mt-10 grid grid-cols-3 gap-4 opacity-80">
+            <div className="h-24 rounded-xl bg-gradient-to-br from-yellow-500/20 to-yellow-200/10" />
+            <div className="h-24 rounded-xl bg-gradient-to-br from-blue-500/20 to-blue-200/10" />
+            <div className="h-24 rounded-xl bg-gradient-to-br from-purple-500/20 to-purple-200/10" />
+          </div>
         </div>
-      </div>
+      </main>
+
+      <footer className="mt-20 py-10 text-center text-white/50 text-sm">
+        Built with a calming, minimal aesthetic.
+      </footer>
     </div>
-  )
+  );
 }
 
-export default App
+export default App;
